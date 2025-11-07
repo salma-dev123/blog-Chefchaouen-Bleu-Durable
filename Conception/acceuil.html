@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chefchaouen – Bleu Durable | Tourisme Écologique</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f0f4f8 0%, #e8f4f8 100%);
+            overflow-x: hidden;
+        }
+
+        /* === HERO SECTION : Overlay sombre + image === */
+        .hero-bg {
+            background: url('https://images.unsplash.com/flagged/photo-1555169048-3c4845cfcf1c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070') center/cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.35));
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* === ANIMATION TITRE : DESCEND DU HAUT VERS LE BAS === */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-title {
+            opacity: 0;
+            animation: slideDown 1.2s ease-out forwards;
+        }
+
+        /* Délais progressifs par section */
+        #about .animate-title { animation-delay: 0.4s; }
+        .articles-section .animate-title { animation-delay: 0.5s; }
+        .mission-section .animate-title { animation-delay: 0.6s; }
+
+        /* === Stickers animés === */
+        .sticker {
+            position: absolute;
+            opacity: 0.25;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .sticker-rotate {
+            animation: rotate 10s linear infinite;
+        }
+        
+        .sticker-pulse {
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.25; }
+            50% { transform: scale(1.1); opacity: 0.4; }
+        }
+
+        /* === Cartes articles === */
+        .article-card {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px solid transparent;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(9, 177, 236, 0.3);
+            border-color: #09B1EC;
+        }
+        
+        /* === Cartes Mission === */
+        .mission-card {
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #B0D6F5;
+        }
+        
+        .mission-card::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(9, 177, 236, 0.2), rgba(101, 194, 245, 0.2));
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .mission-card:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+        
+        .mission-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 20px 40px rgba(9, 177, 236, 0.3);
+            border-color: #09B1EC;
+        }
+        
+        /* === Navigation === */
+        .nav-link {
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #09B1EC, #0463CA);
+            transition: width 0.3s;
+            border-radius: 3px;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* === Boutons === */
+        .btn-chefchaouen {
+            background: linear-gradient(135deg, #09B1EC 0%, #0463CA 100%);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-chefchaouen::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn-chefchaouen:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .btn-chefchaouen:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(9, 177, 236, 0.5);
+        }
+        
+        /* === Icônes sociales === */
+        .social-icon {
+            transition: all 0.4s;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-8px) rotate(360deg) scale(1.2);
+        }
+
+        /* === Cadre photo About === */
+        .about-frame {
+            border: 8px solid #09B1EC;
+            border-radius: 30px;
+            transform: rotate(-2deg);
+            box-shadow: 0 20px 50px rgba(9, 177, 236, 0.3);
+            transition: transform 0.4s;
+        }
+
+        .about-frame:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        /* === FOOTER : Bleu sombre élégant === */
+        footer {
+            background: linear-gradient(135deg, #0c4a6e 0%, #1e3a8a 50%, #312e81 100%);
+            color: #e0f2fe;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer h3 {
+            color: #93c5fd;
+            font-weight: 700;
+        }
+
+        footer p, footer a {
+            color: #bfdbfe;
+        }
+
+        footer a:hover {
+            color: #60a5fa;
+            transform: translateX(4px);
+            transition: all 0.3s;
+        }
+
+        .footer-sticker {
+            opacity: 0.12;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <nav class="bg-white/95 backdrop-blur-md shadow-xl sticky top-0 z-50 border-b-4 border-blue-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-3">
+                    <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-transparent">
+                        Chefchaouen – Bleu Durable
+                    </span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="nav-link text-gray-700 hover:text-blue-600 font-semibold text-lg">Accueil</a>
+                    <a href="articles.html" class="nav-link text-gray-700 hover:text-blue-600 font-semibold text-lg">Articles</a>
+                </div>
+                <button class="md:hidden text-gray-700 hover:text-blue-600 transition-colors">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-screen flex items-center justify-center relative">
+        <div class="hero-content max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <!-- Stickers -->
+            <div class="sticker top-16 left-12 text-yellow-300 text-7xl">★</div>
+            <div class="sticker sticker-pulse top-32 right-16 text-pink-300 text-6xl">❤</div>
+            <div class="sticker sticker-rotate top-20 left-1/4 text-white text-9xl opacity-20">○</div>
+            <div class="sticker bottom-40 left-16 text-purple-300 text-8xl">✦</div>
+            <div class="sticker sticker-pulse top-1/3 right-1/3 text-green-300 text-7xl">✿</div>
+            <div class="sticker bottom-24 right-20 text-yellow-300 text-6xl">★</div>
+            <div class="sticker top-2/3 left-1/3 text-pink-300 text-9xl">◆</div>
+            <div class="sticker sticker-rotate bottom-32 right-1/4 text-white text-7xl opacity-20">◉</div>
+            
+            <div class="mb-8">
+                <h1 class="text-7xl md:text-8xl font-extrabold text-white mb-4 drop-shadow-2xl tracking-tight">
+                    Chefchaouen
+                </h1>
+                <h2 class="text-5xl md:text-6xl font-bold text-white drop-shadow-2xl mb-12">
+                    Bleu Durable
+                </h2>
+            </div>
+            
+            <div class="max-w-4xl mx-auto mb-10">
+                <p class="text-2xl md:text-3xl text-white leading-relaxed font-light mb-6 drop-shadow-xl">
+                    Bienvenue sur <span class="font-bold">Chefchaouen – Bleu Durable</span>, votre guide pour découvrir le <span class="font-bold">tourisme écologique et responsable</span> dans la ville bleue. 
+                </p>
+                <p class="text-xl md:text-2xl text-white leading-relaxed drop-shadow-xl">
+                    Inspirez-vous de nos articles pour voyager de manière durable et respectueuse de l'environnement.
+                </p>
+            </div>
+
+            <div class="space-x-6">
+                <a href="#about" class="btn-chefchaouen relative px-12 py-5 rounded-full text-white font-bold text-xl shadow-2xl inline-block">
+                    <span class="relative z-10">En savoir plus <i class="fas fa-arrow-down ml-2"></i></span>
+                </a>
+                <a href="articles.html" class="btn-chefchaouen relative px-12 py-5 rounded-full text-white font-bold text-xl shadow-2xl inline-block">
+                    <span class="relative z-10">Découvrir les articles <i class="fas fa-newspaper ml-2"></i></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-gradient-to-br from-white via-blue-50 to-white relative overflow-hidden">
+        <div class="sticker sticker-pulse top-10 right-10 text-blue-200 text-9xl opacity-20">✦</div>
+        <div class="sticker bottom-10 left-10 text-pink-200 text-8xl opacity-20">❤</div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="animate-title text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">
+                    À propos de notre blog
+                </h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="space-y-6 text-lg text-gray-700 leading-relaxed">
+                    <p>
+                        <span class="font-bold text-blue-600">Chefchaouen – Bleu Durable</span> est né d'une passion profonde pour cette ville magnifique et d'un engagement envers le tourisme responsable. Notre mission est de vous faire découvrir Chefchaouen sous un angle écologique et durable.
+                    </p>
+                    <p>
+                        Nous croyons qu'il est possible de voyager tout en respectant l'environnement et les communautés locales. À travers nos articles, nous vous guidons vers des expériences authentiques qui préservent la beauté et la culture de la ville bleue.
+                    </p>
+                    <p>
+                        Que vous soyez amateur de randonnée, passionné de culture locale, gourmand en quête de saveurs authentiques ou simplement à la recherche d'inspiration pour un voyage responsable, vous trouverez ici des contenus riches et pratiques.
+                    </p>
+                    <p class="font-semibold text-blue-600">
+                        Rejoignez-nous dans cette aventure vers un tourisme plus conscient et respectueux !
+                    </p>
+                </div>
+
+                <div class="relative">
+                    <div class="about-frame overflow-hidden">
+                        <img src="https://i.pinimg.com/1200x/85/e1/02/85e1027accc27f28278a84bc18ae9d72.jpg" 
+                             alt="Chefchaouen" 
+                             class="w-full h-full object-cover rounded-3xl">
+                    </div>
+                    <div class="absolute -top-6 -right-6 text-yellow-400 text-6xl animate-pulse">★</div>
+                    <div class="absolute -bottom-6 -left-6 text-pink-400 text-6xl animate-pulse">✿</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Articles récents -->
+    <section class="py-24 bg-gradient-to-br from-blue-50 via-white to-blue-50 relative overflow-hidden articles-section">
+        <div class="sticker sticker-pulse top-10 right-10 text-blue-200 text-9xl opacity-20">✦</div>
+        <div class="sticker top-1/2 left-10 text-pink-200 text-8xl opacity-20">❤</div>
+        <div class="sticker sticker-rotate bottom-10 right-1/4 text-yellow-200 text-7xl opacity-20">★</div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="animate-title text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 mb-6">
+                    Articles Récents
+                </h2>
+                <div class="flex items-center justify-center space-x-3 mb-4">
+                    <div class="w-16 h-1 bg-gradient-to-r from-transparent to-blue-400 rounded-full"></div>
+                    <div class="w-24 h-2 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full"></div>
+                    <div class="w-16 h-1 bg-gradient-to-r from-blue-600 to-transparent rounded-full"></div>
+                </div>
+                <p class="text-xl text-gray-600 mt-4">Découvrez nos dernières publications</p>
+            </div>
+            
+            <!-- === ARTICLES (3 cartes) === -->
+            <div class="grid md:grid-cols-3 gap-10 mb-16">
+                <!-- Article 1 -->
+                <div class="article-card bg-white rounded-3xl overflow-hidden shadow-xl">
+                    <div class="h-64 relative overflow-hidden">
+                        <img src="https://i.pinimg.com/1200x/91/e7/d6/91e7d6c7d519792568b4ac54e2f12e4b.jpg" alt="Nature" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-5 right-5 bg-white/95 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-bold text-green-600 shadow-lg border-2 border-green-200">
+                            <i class="fas fa-leaf mr-2"></i>Nature
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4 hover:text-blue-600 transition-colors">
+                            Les sentiers cachés de Chefchaouen
+                        </h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Découvrez les chemins de randonnée méconnus autour de la ville bleue, entre nature préservée et vues spectaculaires.
+                        </p>
+                        <a href="article-detail.html?id=1" class="btn-chefchaouen relative text-white px-8 py-3 rounded-full font-semibold text-lg inline-block">
+                            <span class="relative z-10">Lire plus <i class="fas fa-arrow-right ml-2"></i></span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Article 2 -->
+                <div class="article-card bg-white rounded-3xl overflow-hidden shadow-xl">
+                    <div class="h-64 relative overflow-hidden">
+                        <img src="https://i.pinimg.com/736x/cb/90/11/cb90115e731c6c530153e1687c137441.jpg" alt="Culture" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-5 right-5 bg-white/95 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-bold text-blue-600 shadow-lg border-2 border-blue-200">
+                            <i class="fas fa-palette mr-2"></i>Culture locale
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4 hover:text-blue-600 transition-colors">
+                            L'artisanat traditionnel revisité
+                        </h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Rencontrez les artisans locaux qui perpétuent les traditions tout en adoptant des pratiques durables et écoresponsables.
+                        </p>
+                        <a href="article-detail.html?id=2" class="btn-chefchaouen relative text-white px-8 py-3 rounded-full font-semibold text-lg inline-block">
+                            <span class="relative z-10">Lire plus <i class="fas fa-arrow-right ml-2"></i></span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Article 3 -->
+                <div class="article-card bg-white rounded-3xl overflow-hidden shadow-xl">
+                    <div class="h-64 relative overflow-hidden">
+                        <img src="https://i.pinimg.com/1200x/e3/9c/17/e39c177cbcf90564b419bbb53f3afd09.jpg" alt="Gastronomie" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-5 right-5 bg-white/95 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-bold text-orange-600 shadow-lg border-2 border-orange-200">
+                            <i class="fas fa-utensils mr-2"></i>Gastronomie
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4 hover:text-blue-600 transition-colors">
+                            Saveurs locales et bio
+                        </h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Explorez les restaurants et cafés qui privilégient les produits locaux et biologiques pour une cuisine authentique et durable.
+                        </p>
+                        <a href="article-detail.html?id=3" class="btn-chefchaouen relative text-white px-8 py-3 rounded-full font-semibold text-lg inline-block">
+                            <span class="relative z-10">Lire plus <i class="fas fa-arrow-right ml-2"></i></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a href="articles.html" class="inline-block btn-chefchaouen relative px-14 py-5 rounded-full text-white font-bold text-xl shadow-2xl">
+                    <span class="relative z-10">Voir tous les articles <i class="fas fa-arrow-right ml-3"></i></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notre Mission -->
+    <section class="py-24 bg-gradient-to-br from-white via-blue-50 to-purple-50 relative overflow-hidden mission-section">
+        <div class="sticker top-24 left-16 text-yellow-300 text-9xl opacity-25">★</div>
+        <div class="sticker sticker-pulse bottom-24 right-16 text-pink-300 text-9xl opacity-25">✿</div>
+        <div class="sticker sticker-rotate top-1/2 right-1/3 text-blue-200 text-8xl opacity-20">◆</div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="animate-title text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600 mb-6">
+                    Notre Mission
+                </h2>
+                <div class="flex items-center justify-center space-x-3 mb-4">
+                    <div class="w-16 h-1 bg-gradient-to-r from-transparent to-purple-400 rounded-full"></div>
+                    <div class="w-24 h-2 bg-gradient-to-r from-purple-400 to-blue-600 rounded-full"></div>
+                    <div class="w-16 h-1 bg-gradient-to-r from-blue-600 to-transparent rounded-full"></div>
+                </div>
+                <p class="text-xl text-gray-600 mt-4">Nos engagements pour un tourisme responsable</p>
+            </div>
+            
+            <!-- === CARTES MISSION (4 cartes) === -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Mission 1 -->
+                <div class="mission-card bg-white rounded-3xl p-10 text-center shadow-xl cursor-pointer">
+                    <div class="relative z-10">
+                        <div class="w-24 h-24 bg-gradient-to-br from-green-400 to-green-600 rounded-3xl flex items-center justify-center mx-auto mb-6 transform hover:rotate-12 transition-transform shadow-lg">
+                            <i class="fas fa-seedling text-white text-4xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Préserver l'environnement</h3>
+                        <p class="text-gray-600 leading-relaxed">Promouvoir des pratiques écologiques qui protègent la nature de Chefchaouen</p>
+                    </div>
+                </div>
+
+                <!-- Mission 2 -->
+                <div class="mission-card bg-white rounded-3xl p-10 text-center shadow-xl cursor-pointer">
+                    <div class="relative z-10">
+                        <div class="w-24 h-24 bg-gradient-to-br from-blue-400 to-blue-600 rounded-3xl flex items-center justify-center mx-auto mb-6 transform hover:rotate-12 transition-transform shadow-lg">
+                            <i class="fas fa-hands-helping text-white text-4xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Soutenir les communautés</h3>
+                        <p class="text-gray-600 leading-relaxed">Valoriser les artisans et commerces locaux pour un développement durable</p>
+                    </div>
+                </div>
+
+                <!-- Mission 3 -->
+                <div class="mission-card bg-white rounded-3xl p-10 text-center shadow-xl cursor-pointer">
+                    <div class="relative z-10">
+                        <div class="w-24 h-24 bg-gradient-to-br from-teal-400 to-teal-600 rounded-3xl flex items-center justify-center mx-auto mb-6 transform hover:rotate-12 transition-transform shadow-lg">
+                            <i class="fas fa-book-open text-white text-4xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Éduquer et sensibiliser</h3>
+                        <p class="text-gray-600 leading-relaxed">Partager des connaissances sur le tourisme responsable et durable</p>
+                    </div>
+                </div>
+
+                <!-- Mission 4 -->
+                <div class="mission-card bg-white rounded-3xl p-10 text-center shadow-xl cursor-pointer">
+                    <div class="relative z-10">
+                        <div class="w-24 h-24 bg-gradient-to-br from-orange-400 to-orange-600 rounded-3xl flex items-center justify-center mx-auto mb-6 transform hover:rotate-12 transition-transform shadow-lg">
+                            <i class="fas fa-heart text-white text-4xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Inspirer le changement</h3>
+                        <p class="text-gray-600 leading-relaxed">Encourager chaque voyageur à adopter des comportements écoresponsables</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 relative overflow-hidden">
+        <div class="sticker footer-sticker sticker-pulse top-10 right-20 text-blue-300 text-7xl">★</div>
+        <div class="sticker footer-sticker bottom-10 left-20 text-blue-300 text-6xl">✦</div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-3 gap-16 mb-12">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <span class="text-2xl font-bold text-sky-200">Chefchaouen – Bleu Durable</span>
+                    </div>
+                    <p class="text-blue-100 leading-relaxed text-lg">
+                        Votre guide pour un tourisme écologique et responsable dans la ville bleue. Découvrez Chefchaouen autrement.
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold mb-8 text-sky-300">Liens rapides</h3>
+                    <div class="space-y-4">
+                        <a href="#" class="block text-blue-100 hover:text-sky-300 transition-all transform hover:translate-x-2 text-lg">
+                            <i class="fas fa-chevron-right mr-2"></i>Accueil
+                        </a>
+                        <a href="articles.html" class="block text-blue-100 hover:text-sky-300 transition-all transform hover:translate-x-2 text-lg">
+                            <i class="fas fa-chevron-right mr-2"></i>Articles
+                        </a>
+                    </div>
+                </div>
+
+                <div class="text-right">
+                    <h3 class="text-2xl font-bold mb-8 text-sky-300">Suivez-nous</h3>
+                    <div class="flex justify-end space-x-5">
+                        <a href="https://www.linkedin.com" class="social-icon w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center hover:from-blue-400 hover:to-blue-600 shadow-lg">
+                            <i class="fab fa-linkedin-in text-white text-2xl"></i>
+                        </a>
+                        <a href="https://www.instagram.com" class="social-icon w-14 h-14 bg-gradient-to-br from-pink-500 to-pink-700 rounded-2xl flex items-center justify-center hover:from-pink-400 hover:to-pink-600 shadow-lg">
+                            <i class="fab fa-instagram text-white text-2xl"></i>
+                        </a>
+                        <a href="https://www.facebook.com" class="social-icon w-14 h-14 bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl flex items-center justify-center hover:from-blue-500 hover:to-blue-700 shadow-lg">
+                            <i class="fab fa-facebook-f text-white text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-10 text-center">
+                <p class="text-gray-400 text-lg">© 2025 Chefchaouen – Bleu Durable. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html

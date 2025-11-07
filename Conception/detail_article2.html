@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'artisanat traditionnel revisité | Chefchaouen – Bleu Durable</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f0f4f8 0%, #e8f4f8 100%);
+            overflow-x: hidden;
+        }
+
+        /* === HERO SECTION === */
+        .hero-bg {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* === STICKERS ANIMÉS === */
+        .sticker {
+            position: absolute;
+            opacity: 0.25;
+            animation: float 8s ease-in-out infinite;
+            z-index: 1;
+        }
+        .sticker-rotate { animation: rotate 10s linear infinite; }
+        .sticker-pulse { animation: pulse 3s ease-in-out infinite; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+        @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.25; }
+            50% { transform: scale(1.1); opacity: 0.4; }
+        }
+
+        /* === NAVIGATION === */
+        .nav-link {
+            position: relative;
+            transition: all 0.3s;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 50%;
+            transform: translateX(-50%);
+            width: 0; height: 3px;
+            background: linear-gradient(90deg, #09B1EC, #0463CA);
+            transition: width 0.3s;
+            border-radius: 3px;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        /* === BOUTONS === */
+        .btn-chefchaouen {
+            background: linear-gradient(135deg, #09B1EC 0%, #0463CA 100%);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-chefchaouen::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 0; height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        .btn-chefchaouen:hover::before { width: 300px; height: 300px; }
+        .btn-chefchaouen:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(9, 177, 236, 0.5);
+        }
+
+        /* === ICÔNES SOCIALES === */
+        .social-icon {
+            transition: all 0.4s;
+        }
+        .social-icon:hover {
+            transform: translateY(-8px) rotate(360deg) scale(1.2);
+        }
+
+        /* === AUTEUR CARD === */
+        .author-card {
+            border: 3px solid #B0D6F5;
+            transition: all 0.4s;
+            text-align: center;
+        }
+        .author-card:hover {
+            border-color: #09B1EC;
+            box-shadow: 0 15px 40px rgba(9, 177, 236, 0.3);
+            transform: translateY(-5px);
+        }
+
+        section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* === ARTICLE IMAGE === */
+        .article-image {
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(9, 177, 236, 0.3);
+            transition: transform 0.4s;
+        }
+        .article-image:hover {
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="bg-white/95 backdrop-blur-md shadow-xl sticky top-0 z-50 border-b-4 border-blue-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-3">
+                    <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-transparent">
+                        Chefchaouen – Bleu Durable
+                    </span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="acceuil.html" class="nav-link text-gray-700 hover:text-blue-600 font-semibold text-lg">Accueil</a>
+                    <a href="articles.html" class="nav-link text-gray-700 hover:text-blue-600 font-semibold text-lg">Articles</a>
+                </div>
+                <button class="md:hidden text-gray-700 hover:text-blue-600">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-32 relative overflow-hidden">
+        <!-- Image de fond -->
+        <img src="https://i.pinimg.com/1200x/5d/19/09/5d1909212814115afc1c96ef9b97e88b.jpg"
+             class="absolute inset-0 w-full h-full object-cover" alt="Artisanat traditionnel de Chefchaouen">
+             
+        <!-- Overlay sombre léger -->
+        <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+        
+        <div class="hero-content max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <!-- Stickers -->
+            <div class="sticker top-10 left-10 text-yellow-300 text-6xl">★</div>
+            <div class="sticker sticker-pulse top-20 right-10 text-pink-300 text-5xl">❤</div>
+            <div class="sticker sticker-rotate bottom-10 left-1/4 text-white text-7xl opacity-20">○</div>
+            <div class="sticker bottom-10 right-10 text-green-300 text-6xl">✿</div>
+            
+            <div class="inline-block bg-white/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6">
+                <span class="text-white font-semibold text-lg">
+                    <i class="fas fa-palette mr-2"></i>Culture locale
+                </span>
+            </div>
+            
+            <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-6 drop-shadow-2xl leading-tight">
+                L'artisanat traditionnel revisité
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-white leading-relaxed drop-shadow-xl max-w-3xl mx-auto">
+                Rencontrez les artisans locaux qui perpétuent les traditions tout en adoptant des pratiques durables
+            </p>
+            
+            <div class="mt-8 flex items-center justify-center text-white">
+                <span><i class="far fa-calendar mr-2"></i>15 Janvier 2025</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image de l'article -->
+    <section class="py-16 bg-white relative">
+        <!-- Stickers -->
+        <div class="sticker top-20 left-20 text-blue-300 text-5xl">✧</div>
+        <div class="sticker sticker-rotate right-40 bottom-10 text-green-300 text-6xl">❀</div>
+        
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <img src="https://i.pinimg.com/1200x/3a/b3/f0/3ab3f035c436206d97ac17757f6823ed.jpg" 
+                 alt="Artisanat traditionnel de Chefchaouen" 
+                 class="article-image w-full h-96 object-cover">
+        </div>
+    </section>
+
+    <!-- Contenu de l'article -->
+    <section class="py-16 bg-white relative">
+        <!-- Stickers -->
+        <div class="sticker top-40 right-10 text-pink-300 text-5xl">♡</div>
+        <div class="sticker sticker-pulse left-20 bottom-40 text-yellow-300 text-6xl">✶</div>
+        <div class="sticker sticker-rotate right-1/4 top-96 text-blue-300 text-5xl">✧</div>
+        <div class="sticker left-1/3 bottom-96 text-green-300 text-6xl">✿</div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="prose prose-lg max-w-none">
+                <p class="text-xl text-gray-700 leading-relaxed mb-8 font-light italic border-l-4 border-blue-500 pl-6 bg-blue-50 py-4 rounded-r-lg">
+                    Dans les ateliers traditionnels de Chefchaouen, une révolution silencieuse est en marche. Les artisans locaux, gardiens d'un savoir-faire séculaire, réinventent leur art en intégrant des pratiques durables tout en préservant l'authenticité qui fait la renommée de la ville bleue.
+                </p>
+
+                <h2 class="text-3xl font-bold text-gray-800 mt-12 mb-6">L'Héritage Artisanal de Chefchaouen</h2>
+                
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    Chefchaouen est depuis longtemps reconnue pour son artisanat d'exception. Tissage, poterie, travail du cuir et du bois - chaque ruelle de la médina abrite des artisans qui perpétuent des techniques transmises de génération en génération. Aujourd'hui, ces maîtres artisans relèvent un nouveau défi : adapter leurs pratiques aux enjeux environnementaux du XXIe siècle.
+                </p>
+
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    Les techniques ancestrales, loin d'être obsolètes, se révèlent souvent plus écologiques que les méthodes industrielles modernes. Les artisans redécouvrent et valorisent ces pratiques traditionnelles tout en les enrichissant d'innovations durables.
+                </p>
+
+                <h2 class="text-3xl font-bold text-gray-800 mt-12 mb-6">Innovation dans la Tradition</h2>
+                
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    Les teinturiers de la ville, par exemple, reviennent aux teintures naturelles, utilisant des pigments extraits de plantes locales. Cette approche non seulement préserve l'environnement mais produit aussi des couleurs plus riches et plus durables. Le fameux bleu de Chefchaouen est désormais obtenu grâce à des méthodes 100% naturelles.
+                </p>
+
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    Dans le domaine du tissage, les artisans utilisent de plus en plus de matériaux recyclés et de fibres naturelles locales. Les vieux textiles sont transformés en nouvelles créations, réduisant les déchets tout en créant des pièces uniques qui racontent une histoire.
+                </p>
+
+                <h2 class="text-3xl font-bold text-gray-800 mt-12 mb-6">Formation et Transmission</h2>
+                
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    La coopérative artisanale "Héritage Durable" joue un rôle central dans cette transformation. Elle forme de jeunes artisans aux techniques traditionnelles tout en les sensibilisant aux pratiques écologiques. Des ateliers réguliers permettent l'échange de connaissances entre générations.
+                </p>
+
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    Le programme "Artisans du Futur" initie les apprentis à la gestion durable des ressources, au recyclage créatif et aux techniques de production respectueuses de l'environnement. Cette formation innovante assure la pérennité des savoir-faire traditionnels.
+                </p>
+
+                <h2 class="text-3xl font-bold text-gray-800 mt-12 mb-6">Impact Économique et Social</h2>
+                
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    Cette approche durable de l'artisanat attire une nouvelle clientèle, sensible aux enjeux environnementaux. Les produits "éco-artisanaux" de Chefchaouen se vendent désormais dans le monde entier, créant des emplois durables pour la communauté locale.
+                </p>
+
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    Les artisans ne sont plus de simples producteurs mais deviennent des ambassadeurs d'un mode de vie durable. Leurs ateliers accueillent des visiteurs du monde entier, curieux de découvrir comment tradition et écologie peuvent se conjuguer harmonieusement.
+                </p>
+
+                <p class="text-lg text-gray-700 leading-relaxed mb-8 font-semibold text-blue-700 bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+                    L'artisanat traditionnel de Chefchaouen montre qu'il est possible de préserver notre patrimoine culturel tout en adoptant des pratiques durables. C'est un modèle inspirant pour d'autres communautés artisanales à travers le monde.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Auteur -->
+    <section class="py-16 bg-gradient-to-br from-blue-50 to-white relative">
+        <!-- Stickers -->
+        <div class="sticker top-10 left-40 text-blue-300 text-5xl">✦</div>
+        <div class="sticker sticker-rotate right-20 bottom-20 text-purple-300 text-6xl">✿</div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="author-card bg-white rounded-3xl p-8 shadow-xl">
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Leila Benali</h3>
+                <p class="text-blue-600 font-semibold">Historienne d'Art & Conservatrice du Patrimoine</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Commentaires -->
+    <section class="py-16 bg-white relative">
+        <!-- Stickers -->
+        <div class="sticker top-20 right-40 text-green-300 text-5xl">✤</div>
+        <div class="sticker sticker-pulse left-10 bottom-60 text-yellow-300 text-6xl">★</div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-gray-800 mb-8">
+                <i class="fas fa-comments text-blue-600 mr-3"></i>Commentaires (3)
+            </h2>
+
+            <!-- Formulaire d'ajout de commentaire -->
+            <div class="bg-blue-50 rounded-3xl p-8 mb-12 shadow-lg border-2 border-blue-200">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6">Laisser un commentaire</h3>
+                <div class="space-y-4">
+                    <div>
+                        <input type="text" placeholder="Votre nom" 
+                               class="w-full px-6 py-4 rounded-2xl border-2 border-blue-200 focus:outline-none bg-white">
+                    </div>
+                    <div>
+                        <textarea placeholder="Votre commentaire..." rows="5"
+                                  class="w-full px-6 py-4 rounded-2xl border-2 border-blue-200 focus:outline-none bg-white resize-none"></textarea>
+                    </div>
+                    <button class="btn-chefchaouen relative px-10 py-4 rounded-full text-white font-bold text-lg shadow-xl">
+                        <span class="relative z-10">
+                            <i class="fas fa-paper-plane mr-2"></i>Publier le commentaire
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Liste des commentaires -->
+            <div class="space-y-6">
+                <!-- Commentaire 1 -->
+                <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-blue-500">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
+                                <i class="fas fa-user text-white text-lg"></i>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="font-bold text-gray-800 text-lg">Amina Benali</h4>
+                                <span class="text-sm text-gray-500">Il y a 1 jour</span>
+                            </div>
+                            <p class="text-gray-700 leading-relaxed">
+                                En tant que membre de la coopérative "Héritage Durable", je suis ravie de voir nos efforts mis en lumière. L'alliance entre tradition et durabilité est vraiment le futur de notre artisanat. Merci pour cet article inspirant ! 🧵✨
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Commentaire 2 -->
+                <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-blue-500">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
+                                <i class="fas fa-user text-white text-lg"></i>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="font-bold text-gray-800 text-lg">Sophie Martin</h4>
+                                <span class="text-sm text-gray-500">Il y a 3 jours</span>
+                            </div>
+                            <p class="text-gray-700 leading-relaxed">
+                                J'ai participé à un atelier de teinture naturelle lors de ma visite et c'était une expérience incroyable ! C'est inspirant de voir comment les artisans combinent traditions et pratiques écologiques. J'ai même rapporté un tapis fait de matériaux recyclés 🌿
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Commentaire 3 -->
+                <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-blue-500">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                                <i class="fas fa-user text-white text-lg"></i>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="font-bold text-gray-800 text-lg">Younès El Idrissi</h4>
+                                <span class="text-sm text-gray-500">Il y a 1 semaine</span>
+                            </div>
+                            <p class="text-gray-700 leading-relaxed">
+                                En tant que jeune apprenti dans le programme "Artisans du Futur", je peux témoigner de l'importance de cette approche durable. Nous apprenons à créer de beaux objets tout en respectant notre environnement. C'est le meilleur des deux mondes ! 🎨♻️
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 relative">
+        <div class="sticker footer-sticker sticker-pulse top-10 right-20 text-blue-300 text-7xl">★</div>
+        <div class="sticker footer-sticker bottom-10 left-20 text-blue-300 text-6xl">✦</div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-3 gap-16 mb-12">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <span class="text-2xl font-bold text-sky-200">Chefchaouen – Bleu Durable</span>
+                    </div>
+                    <p class="text-blue-100 leading-relaxed text-lg">
+                        Votre guide pour un tourisme écologique et responsable dans la ville bleue. Découvrez Chefchaouen autrement.
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold mb-8 text-sky-300">Liens rapides</h3>
+                    <div class="space-y-4">
+                        <a href="acceuil.html" class="block text-blue-100 hover:text-sky-300 transition-all transform hover:translate-x-2 text-lg">
+                            <i class="fas fa-chevron-right mr-2"></i>Accueil
+                        </a>
+                        <a href="articles.html" class="block text-blue-100 hover:text-sky-300 transition-all transform hover:translate-x-2 text-lg">
+                            <i class="fas fa-chevron-right mr-2"></i>Articles
+                        </a>
+                    </div>
+                </div>
+
+                <div class="text-right">
+                    <h3 class="text-2xl font-bold mb-8 text-sky-300">Suivez-nous</h3>
+                    <div class="flex justify-end space-x-5">
+                        <a href="https://www.linkedin.com" class="social-icon w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center hover:from-blue-400 hover:to-blue-600 shadow-lg">
+                            <i class="fab fa-linkedin-in text-white text-2xl"></i>
+                        </a>
+                        <a href="https://www.instagram.com" class="social-icon w-14 h-14 bg-gradient-to-br from-pink-500 to-pink-700 rounded-2xl flex items-center justify-center hover:from-pink-400 hover:to-pink-600 shadow-lg">
+                            <i class="fab fa-instagram text-white text-2xl"></i>
+                        </a>
+                        <a href="https://www.facebook.com" class="social-icon w-14 h-14 bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl flex items-center justify-center hover:from-blue-500 hover:to-blue-700 shadow-lg">
+                            <i class="fab fa-facebook-f text-white text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 pt-10 text-center">
+                <p class="text-gray-400 text-lg">© 2025 Chefchaouen – Bleu Durable. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

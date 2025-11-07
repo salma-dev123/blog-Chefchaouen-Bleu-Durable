@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les sentiers cachés de Chefchaouen | Chefchaouen – Bleu Durable</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f0f4f8 0%, #e8f4f8 100%);
+            overflow-x: hidden;
+        }
+
+        /* === HERO SECTION === */
+        .hero-bg {
+            position: relative;
+            background-image: url('https://www.visitmorocco.com/sites/default/files/styles/thumbnail_destination_background_top5/public/thumbnails/image/chefchaouen-blue-city.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* === STICKERS ANIMÉS === */
+        .sticker {
+            position: absolute;
+            opacity: 0.25;
+            animation: float 8s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        section {
+            position: relative;
+            overflow: hidden;
+        }
+        .sticker-rotate { animation: rotate 10s linear infinite; }
+        .sticker-pulse { animation: pulse 3s ease-in-out infinite; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+        @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.25; }
+            50% { transform: scale(1.1); opacity: 0.4; }
+        }
+
+        /* === NAVIGATION === */
+        .nav-link {
+            position: relative;
+            transition: all 0.3s;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 50%;
+            transform: translateX(-50%);
+            width: 0; height: 3px;
+            background: linear-gradient(90deg, #09B1EC, #0463CA);
+            transition: width 0.3s;
+            border-radius: 3px;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        /* === BOUTONS === */
+        .btn-chefchaouen {
+            background: linear-gradient(135deg, #09B1EC 0%, #0463CA 100%);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-chefchaouen::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 0; height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        .btn-chefchaouen:hover::before { width: 300px; height: 300px; }
+        .btn-chefchaouen:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(9, 177, 236, 0.5);
+        }
+
+        /* === ICÔNES SOCIALES === */
+        .social-icon {
+            transition: all 0.4s;
+        }
+        .social-icon:hover {
+            transform: translateY(-8px) rotate(360deg) scale(1.2);
+        }
+
+        /* === FOOTER === */
+        footer {
+            background: linear-gradient(135deg, #0c4a6e 0%, #1e3a8a 50%, #312e81 100%);
+            color: #e0f2fe;
+            position: relative;
+            overflow: hidden;
+        }
+        footer h3 { color: #93c5fd; font-weight: 700; }
+        footer p, footer a { color: #bfdbfe; }
+        footer a:hover { color: #60a5fa; transform: translateX(4px); transition: all 0.3s; }
+        .footer-sticker { opacity: 0.12; }
+
+        /* === IMAGE ARTICLE === */
+        .article-image {
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(9, 177, 236, 0.3);
+            transition: transform 0.4s;
+        }
+        .article-image:hover {
+            transform: scale(1.02);
+        }
+
+        /* === COMMENTAIRES === */
+        .comment-card {
+            transition: all 0.3s;
+            border-left: 4px solid #09B1EC;
+        }
+        .comment-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 30px rgba(9, 177, 236, 0.2);
+        }
+
+        .comment-input {
+            transition: all 0.3s;
+        }
+        .comment-input:focus {
+            border-color: #09B1EC;
+            box-shadow: 0 0 0 4px rgba(9, 177, 236, 0.2);
+        }
+
+        /* === AUTEUR CARD === */
+        .author-card {
+            border: 3px solid #B0D6F5;
+            transition: all 0.4s;
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .author-card:hover {
+            border-color: #09B1EC;
+            box-shadow: 0 15px 40px rgba(9, 177, 236, 0.3);
+            transform: translateY(-5px);
+        }
+
+        /* === STICKERS GLOBALS === */
+        .page-stickers {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="bg-white/95 backdrop-blur-md shadow-xl sticky top-0 z-50 border-b-4 border-blue-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-3">
+                    <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-transparent">
+                        Chefchaouen – Bleu Durable
+                    </span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="acceuil.html" class="nav-link text-gray-700 hover:text-blue-600 font-semibold text-lg">Accueil</a>
+                    <a href="articles.html" class="nav-link text-gray-700 hover:text-blue-600 font-semibold text-lg">Articles</a>
+                </div>
+                <button class="md:hidden text-gray-700 hover:text-blue-600">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-32 relative overflow-hidden">
+        <!-- Image de fond -->
+        <img src="https://i.pinimg.com/736x/1f/7c/cc/1f7ccc6f702f1985455a7f41d4e4557b.jpg"
+             class="absolute inset-0 w-full h-full object-cover" alt="Vue de Chefchaouen">
+             
+        <!-- Overlay sombre léger -->
+        <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+        
+        <div class="hero-content max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <!-- Stickers -->
+            <div class="sticker top-10 left-10 text-yellow-300 text-6xl">★</div>
+            <div class="sticker sticker-pulse top-20 right-10 text-pink-300 text-5xl">❤</div>
+            <div class="sticker sticker-rotate bottom-10 left-1/4 text-white text-7xl opacity-20">○</div>
+            <div class="sticker bottom-10 right-10 text-green-300 text-6xl">✿</div>
+            
+            <div class="inline-block bg-white/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6">
+                <span class="text-white font-semibold text-lg">
+                    <i class="fas fa-leaf mr-2"></i>Nature
+                </span>
+            </div>
+            
+            <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-6 drop-shadow-2xl leading-tight">
+                Les sentiers cachés de Chefchaouen
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-white leading-relaxed drop-shadow-xl max-w-3xl mx-auto">
+                Découvrez les chemins de randonnée méconnus autour de la ville bleue, entre nature préservée et vues spectaculaires
+            </p>
+            
+            <div class="mt-8 flex items-center justify-center text-white">
+                <span><i class="far fa-calendar mr-2"></i>5 Janvier 2025</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image de l'article -->
+    <section class="py-16 bg-white relative">
+        <!-- Stickers -->
+        <div class="sticker top-20 left-20 text-blue-300 text-5xl">✧</div>
+        <div class="sticker sticker-rotate right-40 bottom-10 text-green-300 text-6xl">❀</div>
+        
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <img src="https://i.pinimg.com/1200x/45/55/3d/45553d1739a36155f30a051bc3cf3453.jpg" 
+                 alt="Les sentiers cachés de Chefchaouen" 
+                 class="article-image w-full h-96 object-cover">
+        </div>
+    </section>
+
+    <!-- Contenu de l'article -->
+    <section class="py-16 bg-white relative">
+        <!-- Stickers -->
+        <div class="sticker top-40 right-10 text-pink-300 text-5xl">♡</div>
+        <div class="sticker sticker-pulse left-20 bottom-40 text-yellow-300 text-6xl">✶</div>
+        <div class="sticker sticker-rotate right-1/4 top-96 text-blue-300 text-5xl">✧</div>
+        <div class="sticker left-1/3 bottom-96 text-green-300 text-6xl">✿</div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="prose prose-lg max-w-none">
+                <p class="text-xl text-gray-700 leading-relaxed mb-8 font-light italic border-l-4 border-blue-500 pl-6 bg-blue-50 py-4 rounded-r-lg">
+                    Chefchaouen, la perle bleue du Rif, cache bien plus que ses ruelles azurées. Au-delà de la médina touristique, des sentiers oubliés serpentent à travers des paysages à couper le souffle, offrant aux randonneurs une expérience authentique et préservée.
+                </p>
+
+                <h2 class="text-3xl font-bold text-gray-800 mt-12 mb-6">Une nature préservée aux portes de la ville</h2>
+                
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    À seulement quelques kilomètres du centre-ville, le parc national de Talassemtane s'étend sur plus de 60 000 hectares. Cette zone protégée abrite une biodiversité exceptionnelle, avec des espèces endémiques du Rif comme le sapin du Maroc (Abies marocana), présent uniquement dans cette région du monde.
+                </p>
+
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    Les sentiers qui traversent ces forêts anciennes offrent une fraîcheur bienvenue en été et des panoramas spectaculaires sur les montagnes environnantes. Le silence n'est rompu que par le chant des oiseaux et le bruissement du vent dans les arbres centenaires.
+                </p>
+
+                <h2 class="text-3xl font-bold text-gray-800 mt-12 mb-6">Le sentier du Jebel el-Kelaa : un panorama exceptionnel</h2>
+                
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    Parmi les randonnées les moins connues, celle menant au sommet du Jebel el-Kelaa (1 616 mètres) reste un secret jalousement gardé par les habitants. Le départ se fait depuis le quartier d'Onsar, au sud de la médina. Le sentier, bien que non balisé, est relativement facile à suivre pour les randonneurs habitués.
+                </p>
+
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    L'ascension dure environ trois heures et offre une variété de paysages remarquable. On commence par traverser des oliveraies en terrasses, témoins d'une agriculture millénaire. Plus haut, le sentier longe des sources naturelles où l'eau claire coule toute l'année, formant de petites cascades rafraîchissantes.
+                </p>
+
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    Au sommet, la récompense est à la hauteur de l'effort : une vue panoramique à 360 degrés sur Chefchaouen, la vallée de l'Oued Laou et, par temps clair, jusqu'à la Méditerranée. Les couchers de soleil y sont particulièrement spectaculaires, teintant la ville bleue de reflets dorés.
+                </p>
+
+                <h2 class="text-3xl font-bold text-gray-800 mt-12 mb-6">Randonnée responsable : conseils pratiques</h2>
+                
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    Pour profiter pleinement de ces sentiers tout en préservant leur beauté naturelle, quelques règles s'imposent. Tout d'abord, il est essentiel de partir équipé : de bonnes chaussures de randonnée, de l'eau en quantité suffisante (au moins 2 litres par personne), un chapeau et de la crème solaire.
+                </p>
+
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    Respectez le principe du "zéro déchet" : emportez tous vos déchets avec vous, y compris les épluchures de fruits qui peuvent perturber l'écosystème local. Restez sur les sentiers balisés pour éviter l'érosion et ne cueillez pas de plantes, certaines espèces étant protégées.
+                </p>
+
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    Privilégiez les services de guides locaux. Non seulement ils connaissent parfaitement les sentiers, mais ils contribuent aussi à l'économie locale et partagent avec passion leur connaissance de la flore, de la faune et des traditions berbères. Plusieurs associations comme "Rif Mountains Adventures" proposent des randonnées écoresponsables.
+                </p>
+
+                <h2 class="text-3xl font-bold text-gray-800 mt-12 mb-6">Les meilleures saisons pour randonner</h2>
+                
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    Le printemps (mars à mai) est sans conteste la période idéale pour explorer ces sentiers. La montagne est alors couverte d'un tapis de fleurs sauvages multicolores : coquelicots, iris, orchidées sauvages... Les températures sont douces, oscillant entre 15 et 25°C, parfaites pour la randonnée.
+                </p>
+
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    L'automne (septembre à novembre) offre également des conditions excellentes, avec des paysages teintés d'ocre et de rouge. Les journées sont encore ensoleillées mais moins chaudes qu'en été. C'est aussi la saison des récoltes, et vous croiserez peut-être des agriculteurs ramassant olives et figues.
+                </p>
+
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    L'hiver apporte son lot de surprises : il n'est pas rare de voir les sommets enneigés, offrant un contraste saisissant avec le bleu de la ville. Cependant, certains sentiers peuvent devenir glissants et nécessitent plus de précautions.
+                </p>
+
+                <h2 class="text-3xl font-bold text-gray-800 mt-12 mb-6">Préserver ce patrimoine naturel</h2>
+                
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    Ces sentiers cachés restent préservés précisément parce qu'ils sont peu fréquentés. En tant que visiteurs responsables, notre rôle est de maintenir cet équilibre fragile. Évitez de partager systématiquement la localisation exacte de ces lieux sur les réseaux sociaux pour prévenir le sur-tourisme.
+                </p>
+
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    Soutenez les initiatives locales de conservation. Des associations travaillent avec les communautés rurales pour développer un tourisme durable qui bénéficie aux habitants tout en protégeant l'environnement. Votre contribution, même modeste, peut faire une réelle différence.
+                </p>
+
+                <p class="text-lg text-gray-700 leading-relaxed mb-8 font-semibold text-blue-700 bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+                    Explorer les sentiers cachés de Chefchaouen, c'est découvrir le Maroc authentique, loin des circuits touristiques classiques. C'est aussi prendre conscience de la fragilité de ces écosystèmes et de notre responsabilité dans leur préservation pour les générations futures.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Auteur -->
+    <section class="py-16 bg-gradient-to-br from-blue-50 to-white relative">
+        <!-- Stickers -->
+        <div class="sticker top-10 left-40 text-blue-300 text-5xl">✦</div>
+        <div class="sticker sticker-rotate right-20 bottom-20 text-purple-300 text-6xl">✿</div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="author-card bg-white rounded-3xl p-8 shadow-xl">
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Youssef Amrani</h3>
+                <p class="text-blue-600 font-semibold">Guide de montagne & Expert en écotourisme</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Commentaires -->
+    <section class="py-16 bg-white relative">
+        <!-- Stickers -->
+        <div class="sticker top-20 right-40 text-green-300 text-5xl">✤</div>
+        <div class="sticker sticker-pulse left-10 bottom-60 text-yellow-300 text-6xl">★</div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-gray-800 mb-8">
+                <i class="fas fa-comments text-blue-600 mr-3"></i>Commentaires (3)
+            </h2>
+
+            <!-- Formulaire d'ajout de commentaire -->
+            <form action="#" method="POST" class="bg-blue-50 rounded-3xl p-8 mb-12 shadow-lg border-2 border-blue-200">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6">Laisser un commentaire</h3>
+                <div class="space-y-4">
+                    <div>
+                        <input type="text" name="name" placeholder="Votre nom" required
+                               class="comment-input w-full px-6 py-4 rounded-2xl border-2 border-blue-200 focus:outline-none bg-white">
+                    </div>
+                    <div>
+                        <textarea name="comment" placeholder="Votre commentaire..." rows="5" required
+                                  class="comment-input w-full px-6 py-4 rounded-2xl border-2 border-blue-200 focus:outline-none bg-white resize-none"></textarea>
+                    </div>
+                    <button type="submit" class="btn-chefchaouen relative px-10 py-4 rounded-full text-white font-bold text-lg shadow-xl">
+                        <span class="relative z-10">
+                            <i class="fas fa-paper-plane mr-2"></i>Publier le commentaire
+                        </span>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Liste des commentaires -->
+            <div class="space-y-6">
+                <!-- Commentaire 1 -->
+                <div class="comment-card bg-white rounded-2xl p-6 shadow-md">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
+                                <i class="fas fa-user text-white text-lg"></i>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="font-bold text-gray-800 text-lg">Sarah Benani</h4>
+                                <span class="text-sm text-gray-500">Il y a 2 jours</span>
+                            </div>
+                            <p class="text-gray-700 leading-relaxed">
+                                Magnifique article ! J'ai suivi vos conseils le mois dernier et j'ai découvert des paysages époustouflants. Le sentier du Jebel el-Kelaa est vraiment un trésor caché. Merci pour ce partage précieux et pour votre engagement envers un tourisme responsable.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Commentaire 2 -->
+                <div class="comment-card bg-white rounded-2xl p-6 shadow-md">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                                <i class="fas fa-user text-white text-lg"></i>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="font-bold text-gray-800 text-lg">Marc Dubois</h4>
+                                <span class="text-sm text-gray-500">Il y a 5 jours</span>
+                            </div>
+                            <p class="text-gray-700 leading-relaxed">
+                                En tant que randonneur expérimenté, je confirme que ces sentiers sont exceptionnels. La vue depuis le sommet vaut largement l'effort de la montée. Je recommande vivement de faire appel à un guide local, cela enrichit vraiment l'expérience.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Commentaire 3 -->
+                <div class="comment-card bg-white rounded-2xl p-6 shadow-md">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
+                                <i class="fas fa-user text-white text-lg"></i>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="font-bold text-gray-800 text-lg">Fatima Zahra</h4>
+                                <span class="text-sm text-gray-500">Il y a 1 semaine</span>
+                            </div>
+                            <p class="text-gray-700 leading-relaxed">
+                                Superbe initiative de promouvoir ces lieux tout en sensibilisant au tourisme durable. C'est exactement ce dont notre région a besoin. Continuez ce beau travail ! 🌿
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 relative overflow-hidden">
+        <div class="sticker footer-sticker sticker-pulse top-10 right-20 text-blue-300 text-7xl">★</div>
+        <div class="sticker footer-sticker bottom-10 left-20 text-blue-300 text-6xl">✦</div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-3 gap-16 mb-12">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <span class="text-2xl font-bold text-sky-200">Chefchaouen – Bleu Durable</span>
+                    </div>
+                    <p class="text-blue-100 leading-relaxed text-lg">
+                        Votre guide pour un tourisme écologique et responsable dans la ville bleue. Découvrez Chefchaouen autrement.
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold mb-8 text-sky-300">Liens rapides</h3>
+                    <div class="space-y-4">
+                        <a href="index.html" class="block text-blue-100 hover:text-sky-300 transition-all transform hover:translate-x-2 text-lg">
+                            <i class="fas fa-chevron-right mr-2"></i>Accueil
+                        </a>
+                        <a href="articles.html" class="block text-blue-100 hover:text-sky-300 transition-all transform hover:translate-x-2 text-lg">
+                            <i class="fas fa-chevron-right mr-2"></i>Articles
+                        </a>
+                    </div>
+                </div>
+
+                <div class="text-right">
+                    <h3 class="text-2xl font-bold mb-8 text-sky-300">Suivez-nous</h3>
+                    <div class="flex justify-end space-x-5">
+                        <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center hover:from-blue-400 hover:to-blue-600 shadow-lg">
+                            <i class="fab fa-linkedin-in text-white text-2xl"></i>
+                        </a>
+                        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon w-14 h-14 bg-gradient-to-br from-pink-500 to-pink-700 rounded-2xl flex items-center justify-center hover:from-pink-400 hover:to-pink-600 shadow-lg">
+                            <i class="fab fa-instagram text-white text-2xl"></i>
+                        </a>
+                        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="social-icon w-14 h-14 bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl flex items-center justify-center hover:from-blue-500 hover:to-blue-700 shadow-lg">
+                            <i class="fab fa-facebook-f text-white text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 pt-10 text-center">
+                <p class="text-gray-400 text-lg">© 2025 Chefchaouen – Bleu Durable. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
