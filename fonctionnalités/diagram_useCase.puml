@@ -10,15 +10,17 @@ actor "Editeur" as Editeur
 Admin <|-- Editeur
 
 rectangle "Blog : Chefchaouen - Bleu Durable" {
-  (Consulter la page d'acceuil) as UC1
-  (Consulter la liste des articles) as UC2
-  (Voir les détails d'un article) as UC3
-  (Rechercher / filtrer un article) as UC4
-  (Commenter) as UC5
-  (Liker / Sauvegarder un article) as UC6
-  (Partager un article) as UC7
-  (Créer les articles) as UC8
-  (Valider les articles) as UC9
+  (Créer un Compte Utilisateur) as UC1
+  (Consulter la page d'acceuil) as UC2
+  (Consulter la liste des articles) as UC3
+  (Voir les détails d'un article) as UC4
+  (Rechercher / filtrer un article) as UC5
+  (Commenter) as UC6
+  (Liker / Sauvegarder un article) as UC7
+  (Partager un article) as UC8
+  (Se connecter) as UC9
+  (Valider les articles) as UC10
+  (Créer les articles) as UC11
 }
 
 ' Relations du Visiteur
@@ -29,11 +31,13 @@ Visiteur -- UC4
 Visiteur -- UC5
 Visiteur -- UC6
 Visiteur -- UC7
+Visiteur -- UC8
 
 ' Relations de l'Editeur
-Editeur -- UC8
+Editeur -- UC11
 
 ' Relations de l'Administrateur
 Admin -- UC9
+Admin -- UC10
 
 @enduml

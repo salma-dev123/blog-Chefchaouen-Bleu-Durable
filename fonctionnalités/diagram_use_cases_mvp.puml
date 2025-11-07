@@ -12,8 +12,10 @@ rectangle "MVP - Blog Chefchaouen Bleu Durable" {
   (Consulter la liste des articles) as UC2
   (Voir les détails d’un article) as UC3
   (Commenter un article) as UC4
-  (Créer un article) as UC5
+  (Se connecter) as UC5
   (Valider les articles) as UC6
+  (Créer un article) as UC7
+  
 }
 
 ' Relations des acteurs
@@ -22,9 +24,12 @@ Visiteur -- UC2
 Visiteur -- UC3
 Visiteur -- UC4
 
-Editeur -- UC5
-
+Admin -- UC5
 Admin -- UC6
+
+Editeur -- UC7
+
+
 
 ' Héritage
 Editeur <|-- Admin
