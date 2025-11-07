@@ -46,3 +46,28 @@ S’informer sur les pratiques durables et les initiatives locales à Chefchaoue
 
 ### 📱 Environnement :
 Utilise un ordinateur portable pour ses recherches et un smartphone pour la lecture rapide des articles.
+
+---
+
+## 🧍‍♂️ Persona 3 — Samir El Fassi, éditeur passionné par l’écotourisme
+
+### Âge / Contexte  
+35 ans, habitant à Chefchaouen. Ancien guide de randonnée devenu créateur de contenu spécialisé dans le tourisme durable.  
+Il rédige régulièrement des articles sur les initiatives locales, les parcours écologiques et les bonnes pratiques environnementales.  
+Le blog représente pour lui un espace pour sensibiliser les visiteurs et valoriser les efforts de la communauté locale.
+
+### 🎯 Objectif principal  
+Publier des articles informatifs et fiables pour promouvoir les initiatives écotouristiques de Chefchaouen et encourager un tourisme responsable.
+
+### 🌿 Besoins clés  
+- Disposer d’un espace simple et rapide pour rédiger et publier des articles.  
+- Ajouter des photos capturées lors de ses randonnées pour illustrer ses contenus.  
+- Suivre l’engagement des lecteurs (commentaires, likes, interactions).
+
+### 🧐 Frustrations  
+- Absence de plateformes locales dédiées exclusivement au tourisme durable.  
+- Informations écologiques souvent mal présentées ou incomplètes sur les réseaux sociaux.  
+
+### 📱 Environnement  
+Utilise principalement un ordinateur portable pour rédiger et un smartphone pour vérifier les commentaires ou faire de petites mises à jour.
+
