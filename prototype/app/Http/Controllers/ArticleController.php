@@ -22,7 +22,7 @@ class ArticleController extends Controller
         return view('articles.index', $data);
     }
 
-    public function delete(Article $article){
+    public function destroy(Article $article){
         $this->articleService->delete($article);
         return redirect()->route('articles.index')->with('success',' Article supprimé avec succés.');
     }
