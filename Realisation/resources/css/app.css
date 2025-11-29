@@ -1,0 +1,56 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+/* ✅ Preline UI */
+@import "../../node_modules/preline/variants.css";
+@source "../../node_modules/preline/dist/*.js";
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+  .ProseMirror:focus {
+    outline: none;
+  }
+
+  .tiptap ul p,
+  .tiptap ol p {
+    display: inline;
+  }
+
+  .tiptap p.is-editor-empty:first-child::before {
+    content: attr(data-placeholder);
+    float: left;
+    height: 0;
+    pointer-events: none;
+  }
+
+  /* Editor Styles */
+  [contenteditable] {
+      outline: none;
+  }
+  [contenteditable][data-placeholder]:empty:before {
+      content: attr(data-placeholder);
+      color: #9CA3AF;
+      pointer-events: none;
+      display: block;
+  }
+  #hs-editor-tiptap img {
+      max-width: 100%;
+      height: auto;
+      margin: 0.5rem 0;
+  }
+  [data-hs-editor-field]:focus {
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+      --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+      --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+      box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+      --tw-ring-opacity: 1;
+      --tw-ring-color: rgb(59 130 246 / var(--tw-ring-opacity));
+  }
