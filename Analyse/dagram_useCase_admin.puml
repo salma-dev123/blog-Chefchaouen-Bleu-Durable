@@ -3,23 +3,18 @@ left to right direction
 
 '============== Acteurs ==============
 actor Auteur as E
-actor Moderateur as M
 actor Admin as A
-
-' Héritages
-A --|> E
-A --|> M
 
 '============== Cas d'utilisation (centre) ==============
 rectangle "Fonctionnalités" {
 
-  ' --- Éditeur ---
+  ' --- Auteur ---
   usecase "Voir article" as E1
   usecase "Rechercher/Filtrer un article" as E2
   usecase "Gérer article\n(ajout/edition/suppression)" as E3
   usecase "Envoyer article pour validation" as E4
 
-  ' --- Modérateur ---
+  ' --- Anciennes fonctionnalités du Modérateur (passées à Admin) ---
   usecase "Valider articles" as M1
   usecase "Voir/Supprimer commentaires" as M2
 
@@ -37,22 +32,18 @@ rectangle "Authentification" {
 
 '============== Associations ==============
 
-' Éditeur
+' Auteur
 E -- E1
 E -- E2
 E -- E3
 E -- E4
-E -- M2
 
-' Modérateur
-M -- M1
-M -- M2
-
-' Admin
+' Admin (avec les fonctionnalités du Modérateur)
 A -- A1
 A -- A2
 A -- A3
 A -- A4
+A -- M1
 A -- M2
 
 '============== Relations include ==============
