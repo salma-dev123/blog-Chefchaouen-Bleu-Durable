@@ -22,7 +22,7 @@ rectangle "Fonctionnalités" {
   usecase "Voir dashboard admin" as A1
   usecase "Voir/Supprimer utilisateurs" as A2
   usecase "Gérer catégories\n(ajout/mod/suppression)" as A3
-  usecase "Voir articles" as A4
+  usecase "Voir/Supprimer articles" as A4
 }
 
 '============== Authentification ==============
