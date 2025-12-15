@@ -13,7 +13,14 @@ class User {
   string prenom
   string email
   string password
-  enum role // visiteur, editeur, moderateur, admin
+  int role_id
+}
+
+class Role {
+  int id
+  string nom
+  datetime created_at
+  datetime updated_at
 }
 
 class Article {
@@ -82,5 +89,8 @@ ArticleCategorie .. Article
 Tag "N" -- "N" Article : étiquette >
 ArticleTag .. Tag
 ArticleTag .. Article
+
+'============== Relation User <-> Role ==============
+Role "1" -- "N" User : attribue >
 
 @enduml
